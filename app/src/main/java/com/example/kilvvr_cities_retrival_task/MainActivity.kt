@@ -10,7 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.kilvvr_cities_retrival_task.ui.screens.home.HomeViewModel
 import com.example.kilvvr_cities_retrival_task.ui.theme.KilvvrcitiesretrivaltaskTheme
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +32,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(name: String, viewModel: HomeViewModel = koinViewModel()) {
     Text(
         text = "Hello $name!",
-        modifier = modifier
     )
 }
 
