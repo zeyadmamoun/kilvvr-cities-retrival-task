@@ -1,6 +1,5 @@
 package com.example.kilvvr_cities_retrival_task.ui.screens.home
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -15,7 +14,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.time.measureTime
 
 class HomeViewModel(private val repository: CitiesRepository) : ViewModel() {
     /**
