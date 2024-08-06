@@ -6,4 +6,8 @@ import kotlinx.serialization.Serializable
 data class Coordinates(
     val lon: Double,
     val lat: Double
-)
+){
+    fun print(): String{
+        return "${lon}, $lat"
+    }
+}

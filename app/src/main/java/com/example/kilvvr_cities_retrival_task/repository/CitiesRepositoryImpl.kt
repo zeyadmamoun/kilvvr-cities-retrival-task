@@ -35,7 +35,7 @@ class CitiesRepositoryImpl(private val context: Context) : CitiesRepository {
                     it.readText()
                 }
             val cities = Json.decodeFromString<List<City>>(data)
-            cities
+            cities.sortedWith(compareBy({it.name}, { it.country}))
         } catch (e: Exception) {
             Log.e("RepositoryImpl", e.toString())
             emptyList()
