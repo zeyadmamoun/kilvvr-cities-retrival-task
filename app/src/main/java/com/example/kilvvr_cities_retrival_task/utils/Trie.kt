@@ -1,4 +1,4 @@
-package com.example.kilvvr_cities_retrival_task.ui.utils
+package com.example.kilvvr_cities_retrival_task.utils
 
 import com.example.kilvvr_cities_retrival_task.models.City
 

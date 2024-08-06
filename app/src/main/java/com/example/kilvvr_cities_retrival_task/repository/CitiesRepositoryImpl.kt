@@ -3,7 +3,7 @@ package com.example.kilvvr_cities_retrival_task.repository
 import android.content.Context
 import android.util.Log
 import com.example.kilvvr_cities_retrival_task.models.City
-import com.example.kilvvr_cities_retrival_task.ui.utils.Trie
+import com.example.kilvvr_cities_retrival_task.utils.Trie
 import kotlinx.serialization.json.Json
 
 /**
