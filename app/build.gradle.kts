@@ -67,6 +67,9 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.android.compose)
     implementation(libs.androidx.navigation.compose)
+    // maps
+    implementation("com.google.maps.android:maps-compose:2.11.4")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

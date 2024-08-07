@@ -16,13 +16,25 @@ import androidx.navigation.navArgument
 import com.example.kilvvr_cities_retrival_task.ui.screens.home.HomeScreen
 import com.example.kilvvr_cities_retrival_task.ui.screens.map.MapScreen
 
+/**
+ * Represents different screens in the app with their respective routes.
+ *
+ * 1. home is the first screen where the prefix search operation will take a place.
+ * 2. Map is the second screen where the location of the city is shown on google map Composable.
+ *
+ * @property route The route is like the id of the screen.
+ */
 sealed class Screen(val route: String) {
     data object Home : Screen(route = "home_screen")
     data object Map : Screen(route = "map_screen/{lat}/{lon}"){
         fun createRoute(lat: Double, lon: Double) = "map_screen/$lat/$lon"
     }
 }
-
+/**
+ * Main composable function for the CitiesApp.
+ *
+ * @param navController The navigation controller used to manage navigation within the app.
+ */
 @Composable
 fun CitiesApp(
     navController: NavHostController = rememberNavController()

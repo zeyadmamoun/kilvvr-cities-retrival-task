@@ -40,9 +40,29 @@ import com.example.kilvvr_cities_retrival_task.ui.theme.Kilvvrcitiesretrivaltask
 import org.koin.androidx.compose.koinViewModel
 
 /**
- * Composable function that represents the main home screen of the application.
+ * HomeScreen composable function
  *
- * @param viewModel The ViewModel that manages the UI state and logic for this screen.
+ * This function creates the main screen of the application, displaying a list of cities
+ * with search functionality.
+ *
+ * @param viewModel The ViewModel that manages the UI state and business logic for this screen.
+ *                  It's injected using Koin dependency injection.
+ * @param navController The NavHostController used for navigation between screens.
+ *
+ * The screen consists of the following elements:
+ * 1. A loading indicator (IndeterminateCircularIndicator) shown when data is being fetched.
+ * 2. A SearchBar for filtering cities.
+ * 3. A LazyColumn that displays either all cities or filtered cities based on the search input.
+ *
+ * The screen's behavior:
+ * - It observes the UI state from the ViewModel using collectAsState().
+ * - If isLoading is true, it displays a loading indicator.
+ * - Otherwise, it shows the search bar and the list of cities.
+ * - The list of cities changes based on the user's search input:
+ *   - If the search input is empty, it shows all cities.
+ *   - If there's a search input, it shows the filtered cities.
+ * - Each city is displayed as a CityCard, which when clicked, navigates to the Map screen
+ *   with the city's coordinates.
  */
 @Composable
 fun HomeScreen(
