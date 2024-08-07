@@ -31,8 +31,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.kilvvr_cities_retrival_task.models.City
 import com.example.kilvvr_cities_retrival_task.models.Coordinates
+import com.example.kilvvr_cities_retrival_task.ui.screens.Screen
 import com.example.kilvvr_cities_retrival_task.ui.theme.KilvvrcitiesretrivaltaskTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -43,7 +46,8 @@ import org.koin.androidx.compose.koinViewModel
  */
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = koinViewModel()
+    viewModel: HomeViewModel = koinViewModel(),
+    navController: NavHostController
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
@@ -64,19 +68,34 @@ fun HomeScreen(
                     .heightIn(56.dp)
             )
             LazyColumn {
-                if (viewModel.userInput == ""){
-                    items(uiState.value.allCities){
-                        CityCard(city = it)
+                if (viewModel.userInput == "") {
+                    items(uiState.value.allCities) {city ->
+                        CityCard(
+                            city = city,
+                            onCardClicked = {
+                                navController.navigate(
+                                    Screen.Map.createRoute(city.coord.lat,city.coord.lon)
+                                )
+                            }
+                        )
                     }
                 } else {
-                    items(uiState.value.filteredCities){
-                        CityCard(city = it)
+                    items(uiState.value.filteredCities) { city ->
+                        CityCard(
+                            city = city,
+                            onCardClicked = {
+                                navController.navigate(
+                                    Screen.Map.createRoute(city.coord.lat,city.coord.lon)
+                                )
+                            }
+                        )
                     }
                 }
             }
         }
     }
 }
+
 /**
  * Composable function that creates a search bar for user input.
  *
@@ -120,6 +139,7 @@ fun SearchBar(
         modifier = modifier
     )
 }
+
 /**
  * Composable function that creates a card to display city information.
  *
@@ -127,12 +147,17 @@ fun SearchBar(
  * @param modifier Modifier for customizing the layout of the card.
  */
 @Composable
-fun CityCard(city: City, modifier: Modifier = Modifier) {
+fun CityCard(
+    city: City,
+    onCardClicked: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
+            .clickable { onCardClicked() }
     ) {
         Column(
             modifier = Modifier
@@ -153,6 +178,7 @@ fun CityCard(city: City, modifier: Modifier = Modifier) {
         }
     }
 }
+
 /**
  * Composable function that creates an indeterminate circular progress indicator.
  */
@@ -180,6 +206,7 @@ fun CityCardPreview() {
     KilvvrcitiesretrivaltaskTheme {
         CityCard(
             city = city,
+            onCardClicked = {}
         )
     }
 }

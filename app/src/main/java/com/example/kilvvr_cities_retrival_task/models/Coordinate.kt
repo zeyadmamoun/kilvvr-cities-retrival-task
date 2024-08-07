@@ -8,6 +8,6 @@ data class Coordinates(
     val lat: Double
 ){
     fun print(): String{
-        return "${lon}, $lat"
+        return "${lat}, $lon"
     }
 }

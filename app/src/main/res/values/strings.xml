@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">kilvvr-cities-retrival-task</string>
+    <string name="home_screen">Home</string>
+    <string name="map_screen">Map</string>
 </resources>
